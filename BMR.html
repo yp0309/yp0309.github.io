@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BMR計算機</title>
+    <style>
+      input[type="number"] {
+        width: 100px;
+        padding: 5px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin: 5px;
+      }
+
+      select {
+        padding: 5px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin: 5px;
+      }
+
+      button {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+
+      #result {
+        margin: 10px;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>BMR計算機</h1>
+    <form>
+      <label>性別：</label>
+      <select id="gender">
+        <option value="male">男性</option>
+        <option value="female">女性</option>
+      </select><br>
+      <label>年齡：</label>
+      <input type="number" id="age" required><br>
+      <label>身高（公分）：</label>
+      <input type="number" id="height" required><br>
+      <label>體重（公斤）：</label>
+      <input type="number" id="weight" required><br>
+      <button type="button" onclick="calculateBMR()">計算</button>
+    </form>
+    <div id="result"></div>
+    <script>
+      function calculateBMR() {
+        let gender = document.getElementById("gender").value;
+        let age = parseInt(document.getElementById("age").value);
+        let height = parseInt(document.getElementById("height").value);
+        let weight = parseInt(document.getElementById("weight").value);
+
+        // 計算BMR值
+        let bmr;
+        if (gender === "male") {
+          bmr = 66 + (13.7 * weight) + (5 * height) - (6.8 * age);
+        } else {
+          bmr = 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age);
+        }
+
+        // 輸出計算結果
+        document.getElementById("result").innerHTML = `您的BMR值為：${bmr.toFixed(2)}千卡`;
+      }
+    </script>
+  </body>
+</html>
